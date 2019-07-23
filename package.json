@@ -6,7 +6,8 @@
   "author": "Ethan Nguyen <thanhnx.605@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "deploy:dev": "serverless deploy"
+    "deploy:dev": "serverless deploy",
+    "deploy": "serverless deploy --stage production"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.2",
