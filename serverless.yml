@@ -22,6 +22,7 @@ service: tools-serverless
 provider:
   name: aws
   runtime: nodejs10.x
+  profile: vitafit
 
 # you can overwrite defaults here
 #  stage: dev
@@ -61,7 +62,7 @@ functions:
     handler: handler.hello
     events:
      - http:
-         path: users/create
+         path: hello
          method: get
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
