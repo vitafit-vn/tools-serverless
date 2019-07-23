@@ -33,7 +33,7 @@ function sendHlvOnlineEmail({ htmlBody, subject, toAddress }) {
   return ses.sendEmail(params).promise();
 }
 
-export async function hello(event, context) {
+async function hello(event, context) {
   const body = {
     message: 'Serverless setup successfully!',
     context,
@@ -46,7 +46,7 @@ export async function hello(event, context) {
   };
 }
 
-export async function sendEmail(event) {
+async function sendEmail(event) {
   const { body, httpMethod } = event;
 
   if (httpMethod !== 'POST') return buildErrorResponse({ message: 'Invalid request method!' });
@@ -65,3 +65,5 @@ export async function sendEmail(event) {
 
   return buildErrorResponse({ message: 'Invalid request!' });
 }
+
+module.exports = { hello, sendEmail };
