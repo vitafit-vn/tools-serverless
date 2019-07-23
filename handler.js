@@ -1,6 +1,39 @@
 const AWS = require('aws-sdk');
 
-const hello = async (event, context) => {
+function buildErrorResponse({ message, statusCode = 400, ...rest }) {
+  return {
+    statusCode,
+    body: JSON.stringify({ message, ...rest }, null, 2),
+  };
+}
+
+function sendHlvOnlineEmail({ htmlBody, subject, toAddress }) {
+  const ses = new AWS.SES({ region: 'us-east-1' });
+
+  const params = {
+    Destination: {
+      ToAddresses: [toAddress],
+    },
+    ConfigurationSetName: 'HlvOnlineEmails',
+    Message: {
+      Body: {
+        Html: {
+          Charset: 'UTF-8',
+          Data: htmlBody,
+        },
+      },
+      Subject: {
+        Charset: 'UTF-8',
+        Data: subject,
+      },
+    },
+    Source: 'hlv-online@vitafit.vn',
+  };
+
+  return ses.sendEmail(params).promise();
+}
+
+export async function hello(event, context) {
   const body = {
     message: 'Serverless setup successfully!',
     context,
@@ -11,47 +44,24 @@ const hello = async (event, context) => {
     statusCode: 200,
     body: JSON.stringify(body, null, 2),
   };
-};
+}
 
-const sendEmail = async (/* event */) => {
-  const ses = new AWS.SES({ region: 'us-east-1' });
+export async function sendEmail(event) {
+  const { body, httpMethod } = event;
 
-  const params = {
-    Destination: {
-      ToAddresses: ['thanhnx.vitafit@gmail.com'],
-    },
-    ConfigurationSetName: 'HlvOnlineEmails',
-    Message: {
-      Body: {
-        Html: {
-          Charset: 'UTF-8',
-          Data: '<html><body><b style="color: red;">hello world</b></body></html>',
-        },
-      },
-      Subject: {
-        Charset: 'UTF-8',
-        Data: 'Test HLV Online email',
-      },
-    },
-    Source: 'hlv-online@vitafit.vn',
-  };
+  if (httpMethod !== 'POST') return buildErrorResponse({ message: 'Invalid request method!' });
 
   try {
-    const data = await ses.sendEmail(params).promise();
+    const { htmlBody, subject, toAddress } = JSON.parse(body);
+    const data = await sendHlvOnlineEmail({ htmlBody, subject, toAddress });
 
     return {
       statusCode: 200,
       body: JSON.stringify(data, null, 2),
     };
   } catch (error) {
-    return {
-      statusCode: 422,
-      body: JSON.stringify({ message: 'Error!', error }, null, 2),
-    };
+    if (httpMethod !== 'POST') return buildErrorResponse({ error, message: 'Invalid request body!' });
   }
-};
 
-module.exports = {
-  hello,
-  sendEmail,
-};
+  return buildErrorResponse({ message: 'Invalid request!' });
+}
