@@ -60,10 +60,8 @@ async function sendEmail(event) {
       body: JSON.stringify(data, null, 2),
     };
   } catch (error) {
-    if (httpMethod !== 'POST') return buildErrorResponse({ error, message: 'Invalid request body!' });
+    return buildErrorResponse({ error, message: 'Invalid request body!' });
   }
-
-  return buildErrorResponse({ message: 'Invalid request!' });
 }
 
 module.exports = { hello, sendEmail };
