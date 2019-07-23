@@ -1,16 +1,15 @@
 const AWS = require('aws-sdk');
 
-const hello = async event => {
+const hello = async (event, context) => {
+  const body = {
+    message: 'Serverless setup successfully!',
+    context,
+    event,
+  };
+
   return {
     statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: 'Go Serverless v1.0! Your function executed successfully!',
-        input: event,
-      },
-      null,
-      2
-    ),
+    body: JSON.stringify(body, null, 2),
   };
 };
 
@@ -21,6 +20,7 @@ const sendEmail = async (/* event */) => {
     Destination: {
       ToAddresses: ['thanhnx.vitafit@gmail.com'],
     },
+    ConfigurationSetName: 'HlvOnlineEmails',
     Message: {
       Body: {
         Html: {

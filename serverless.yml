@@ -61,15 +61,28 @@ functions:
   hello:
     handler: handler.hello
     events:
-     - http:
-         path: hello
-         method: get
+      - http:
+          path: hello
+          #  method: get
+          method: post
+          request:
+            parameters:
+              appended_text: false
+              html_body: true
+              subject: true
+              to_address: true
   sendEmail:
     handler: handler.sendEmail
     events:
-     - http:
-         path: sendEmail
-         method: get
+      - http:
+          path: sendEmail
+          method: post
+          request:
+          parameters:
+            appended_text: false
+            html_body: true
+            subject: true
+            to_address: true
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
