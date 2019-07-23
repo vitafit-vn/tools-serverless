@@ -22,7 +22,7 @@ service: tools-serverless
 provider:
   name: aws
   runtime: nodejs10.x
-  profile: vitafit
+  profile: vitafit-serverless
 
 # you can overwrite defaults here
 #  stage: dev
@@ -63,6 +63,12 @@ functions:
     events:
      - http:
          path: hello
+         method: get
+  sendEmail:
+    handler: handler.sendEmail
+    events:
+     - http:
+         path: sendEmail
          method: get
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
