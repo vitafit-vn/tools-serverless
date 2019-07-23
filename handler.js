@@ -1,6 +1,4 @@
-// 'use strict';
-
-const aws = require('aws-sdk');
+const AWS = require('aws-sdk');
 
 const hello = async event => {
   return {
@@ -17,7 +15,7 @@ const hello = async event => {
 };
 
 const sendEmail = async (/* event */) => {
-  const ses = aws.SES({ region: 'us-east-1' });
+  const ses = new AWS.SES({ region: 'us-east-1' });
 
   const params = {
     Destination: {

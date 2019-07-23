@@ -5,6 +5,9 @@
   "repository": "git@github.com:vitafit-vn/tools-serverless.git",
   "author": "Ethan Nguyen <thanhnx.605@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "deploy:dev": "serverless deploy"
+  },
   "devDependencies": {
     "babel-eslint": "^10.0.2",
     "eslint": "^6.1.0",
