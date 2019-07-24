@@ -11,6 +11,6 @@ gulp.task('transpile', () =>
     .pipe(gulp.dest('./dist'))
 );
 
-gulp.task('clone-serverless', () => gulp.src(['./serverless.yml', './.serverless/*.json']).pipe(gulp.dest('./dist')));
+gulp.task('clone-serverless', () => gulp.src('./serverless.yml').pipe(gulp.dest('./dist')));
 
 gulp.task('default', gulp.series('clean', gulp.parallel('transpile', 'clone-serverless')));
