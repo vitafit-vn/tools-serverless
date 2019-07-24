@@ -1,3 +1,1 @@
-const ses = require('./ses');
-
-module.exports = { ses };
+export * from './ses';

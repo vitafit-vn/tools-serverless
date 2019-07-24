@@ -7,5 +7,3 @@ export default function hello(event, context) {
     message: 'Serverless setup successfully!',
   });
 }
-
-// module.exports = hello;

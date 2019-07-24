@@ -1,4 +1,4 @@
-const hello = require('./src/functions/hello');
-const sendEmail = require('./src/functions/sendEmail');
+import hello from './src/functions/hello';
+import sendEmail from './src/functions/sendEmail';
 
-module.exports = { hello, sendEmail };
+export { hello, sendEmail };
