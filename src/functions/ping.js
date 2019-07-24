@@ -1,6 +1,6 @@
 import { buildResponseData } from '../utils';
 
-export default function hello(event, context) {
+export default function ping(event, context) {
   return buildResponseData({
     context,
     event,

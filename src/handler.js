@@ -1,4 +1,4 @@
-import hello from './functions/hello';
+import ping from './functions/ping';
 import sendEmail from './functions/sendEmail';
 
-export { hello, sendEmail };
+export { ping, sendEmail };
