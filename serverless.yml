@@ -17,9 +17,9 @@ functions:
       - http:
           path: sendEmail
           method: post
-  ping:
-    handler: handler.ping
-    events:
-      - http:
-          path: ping
-          method: get
+  # ping:
+  #   handler: handler.ping
+  #   events:
+  #     - http:
+  #         path: ping
+  #         method: get
