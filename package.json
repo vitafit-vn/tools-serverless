@@ -6,8 +6,8 @@
   "author": "Ethan Nguyen <thanhnx.605@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "predeploy": "rm -rf ./dist && babel --out-dir ./dist handler.js && babel --out-dir ./dist/src ./src",
-    "deploy:dev": "yarn predeploy && serverless deploy --package ./dist",
+    "predeploy": "gulp",
+    "deploy:dev": "gulp && serverless deploy --package ./dist",
     "deploy": "serverless deploy --stage production --package ./dist"
   },
   "devDependencies": {
