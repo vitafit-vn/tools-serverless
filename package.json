@@ -6,20 +6,34 @@
   "author": "Ethan Nguyen <thanhnx.605@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "deploy:dev": "serverless deploy",
-    "deploy": "serverless deploy --stage production"
+    "predeploy": "gulp",
+    "deploy:dev": "gulp && cd ./dist && serverless deploy",
+    "deploy": "cd ./dist && serverless deploy --stage production"
   },
   "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.5.5",
     "babel-eslint": "^10.0.2",
     "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-prettier": "^3.1.0",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean": "^0.4.0",
+    "gulp-debug": "^4.0.0",
+    "gulp-file": "^0.4.0",
+    "gulp-yarn": "^2.0.0",
     "prettier": "^1.18.2",
     "serverless": "^1.48.3"
   },
   "dependencies": {
+    "@babel/runtime": "^7.5.5",
     "lodash": "^4.17.15"
   }
 }
