@@ -7,8 +7,8 @@
   "license": "MIT",
   "scripts": {
     "predeploy": "gulp",
-    "deploy:dev": "gulp && serverless deploy --package ./dist",
-    "deploy": "serverless deploy --stage production --package ./dist"
+    "deploy:dev": "gulp && cd ./dist && serverless deploy",
+    "deploy": "cd ./dist && serverless deploy --stage production"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
