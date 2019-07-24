@@ -7,6 +7,4 @@ function ping(event, context) {
   };
 }
 
-console.debug('invoke');
-
 export { ping, sendEmail };
