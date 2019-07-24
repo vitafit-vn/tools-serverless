@@ -7,8 +7,8 @@
   "license": "MIT",
   "scripts": {
     "predeploy": "rm -rf ./dist && babel --out-dir ./dist handler.js && babel --out-dir ./dist/src ./src",
-    "deploy:dev": "yarn predeploy && serverless deploy",
-    "deploy": "serverless deploy --stage production"
+    "deploy:dev": "yarn predeploy && serverless deploy --package ./dist",
+    "deploy": "serverless deploy --stage production --package ./dist"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
@@ -21,6 +21,9 @@
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-prettier": "^3.1.0",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-debug": "^4.0.0",
     "prettier": "^1.18.2",
     "serverless": "^1.48.2"
   },
