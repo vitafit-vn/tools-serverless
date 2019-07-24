@@ -2,7 +2,7 @@ service: tools-serverless
 provider:
   name: aws
   runtime: nodejs10.x
-  profile: vitafit-serverless
+  profile: vitafit
   region: us-east-1
   iamRoleStatements:
     - Effect: "Allow"
