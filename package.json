@@ -6,8 +6,8 @@
   "author": "Ethan Nguyen <thanhnx.605@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "predeploy": "gulp",
-    "deploy:dev": "gulp && cd ./dist && serverless deploy",
+    "predeploy": "BABEL_ENV=production gulp",
+    "deploy:dev": "BABEL_ENV=production gulp && cd ./dist && serverless deploy",
     "deploy": "cd ./dist && serverless deploy --stage production"
   },
   "devDependencies": {
@@ -18,6 +18,8 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/register": "^7.5.5",
     "babel-eslint": "^10.0.2",
+    "babel-plugin-lodash": "^3.3.4",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-config-prettier": "^6.0.0",
