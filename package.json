@@ -20,6 +20,6 @@
     "serverless": "^1.48.2"
   },
   "dependencies": {
-    "aws-sdk": "^2.497.0"
+    "lodash": "^4.17.15"
   }
 }
