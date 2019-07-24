@@ -17,6 +17,7 @@ functions:
       - http:
           path: sendEmail
           method: post
+          cors: true
   # ping:
   #   handler: handler.ping
   #   events:
