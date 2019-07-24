@@ -11,11 +11,11 @@ provider:
         - "ses:SendRawEmail"
       Resource: "*"
 functions:
-  hello:
-    handler: handler.hello
+  ping:
+    handler: handler.ping
     events:
       - http:
-          path: hello
+          path: ping
           method: get
   sendEmail:
     handler: handler.sendEmail

@@ -1,11 +1,11 @@
 const { buildResponseData } = require('../utils');
 
-function hello(event, context) {
+function ping(/* event, context */) {
   return buildResponseData({
-    context,
-    event,
+    // context,
+    // event,
     message: 'Serverless setup successfully!',
   });
 }
 
-module.exports = hello;
+module.exports = ping;

@@ -1,4 +1,4 @@
-const hello = require('./src/functions/hello');
 const sendEmail = require('./src/functions/sendEmail');
+const ping = require('./src/functions/ping');
 
-module.exports = { hello, sendEmail };
+module.exports = { sendEmail, ping };
