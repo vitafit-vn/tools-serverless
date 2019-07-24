@@ -1,7 +1,7 @@
 const { SOURCE_KEYS, sendHtmlEmail } = require('../aws').ses;
 const { buildResponseData } = require('../utils');
 
-async function sendEmail(event) {
+export default async function sendEmail(event) {
   const { body, httpMethod } = event || {};
 
   if (httpMethod.toUpperCase() !== 'POST') {
@@ -18,4 +18,4 @@ async function sendEmail(event) {
   }
 }
 
-module.exports = sendEmail;
+// module.exports = sendEmail;

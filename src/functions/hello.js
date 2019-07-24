@@ -1,6 +1,6 @@
-const { buildResponseData } = require('../utils');
+import { buildResponseData } from '../utils';
 
-function hello(event, context) {
+export default function hello(event, context) {
   return buildResponseData({
     context,
     event,
@@ -8,4 +8,4 @@ function hello(event, context) {
   });
 }
 
-module.exports = hello;
+// module.exports = hello;
