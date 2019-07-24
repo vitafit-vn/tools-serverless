@@ -1,14 +1,5 @@
 {
   "presets": [
-    [
-      "@babel/preset-env",
-      {
-        "loose": true,
-        "targets": {
-          "esmodules": true,
-          "node": true,
-        }
-      }
-    ]
+    "@babel/env"
   ]
 }
