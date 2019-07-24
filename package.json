@@ -6,6 +6,7 @@
   "author": "Ethan Nguyen <thanhnx.605@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "predeploy": "rm -rf ./dist && babel --out-dir ./dist handler.js && babel --out-dir ./dist/src ./src",
     "deploy:dev": "serverless deploy",
     "deploy": "serverless deploy --stage production"
   },
