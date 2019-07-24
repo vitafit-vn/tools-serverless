@@ -1,16 +1,9 @@
 import gulp from 'gulp';
 import babel from 'gulp-babel';
 import clean from 'gulp-clean';
-import file from 'gulp-file';
 import yarn from 'gulp-yarn';
 
-const PACKAGE_JSON = {
-  dependencies: {
-    '@babel/runtime': '^7.5.5',
-  },
-};
-
-gulp.task('clean', () => gulp.src('./dist', { allowEmpty: true, read: false }).pipe(clean({ allowEmpty: true })));
+gulp.task('clean-up', () => gulp.src('./dist', { allowEmpty: true, read: false }).pipe(clean({ allowEmpty: true })));
 
 gulp.task('transpile', () =>
   gulp
@@ -23,10 +16,9 @@ gulp.task('clone-serverless', () => gulp.src('./serverless.yml').pipe(gulp.dest(
 
 gulp.task('node-packages', () =>
   gulp
-    .src('.')
-    .pipe(file('package.json', JSON.stringify(PACKAGE_JSON, null, 2)))
+    .src('./package.json')
     .pipe(gulp.dest('./dist'))
-    .pipe(yarn())
+    .pipe(yarn({ noLockfile: true, production: true }))
 );
 
-gulp.task('default', gulp.series('clean', gulp.parallel('transpile', 'clone-serverless', 'node-packages')));
+gulp.task('default', gulp.series('clean-up', gulp.parallel('transpile', 'clone-serverless', 'node-packages')));
