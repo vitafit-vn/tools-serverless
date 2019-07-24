@@ -1,4 +1,6 @@
 service: tools-serverless
+app: vitafit-tools
+tenant: ethan605
 provider:
   name: aws
   runtime: nodejs10.x
