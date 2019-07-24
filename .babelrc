@@ -3,8 +3,10 @@
     [
       "@babel/preset-env",
       {
+        "loose": true,
         "targets": {
-          "node": true
+          "esmodules": true,
+          "node": true,
         }
       }
     ]

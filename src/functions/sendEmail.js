@@ -2,9 +2,9 @@ import { sendHtmlEmail } from '../aws';
 import { buildResponseData } from '../utils';
 
 export default async function sendEmail(event) {
-  const { body, httpMethod } = event || {};
+  const { body, httpMethod = '' } = event || {};
 
-  if ((httpMethod || '').toUpperCase() !== 'POST') {
+  if (httpMethod.toUpperCase() !== 'POST') {
     return buildResponseData({ code: 400, message: 'Invalid request method!' });
   }
 
