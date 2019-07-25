@@ -1,4 +1,8 @@
 import AWS from 'aws-sdk'; // eslint-disable-line import/no-extraneous-dependencies
+import inlineCss from 'inline-css';
+
+// Constants
+import { PUBLIC_PATH } from '../constants';
 
 const Charset = 'UTF-8';
 
@@ -23,6 +27,7 @@ const SOURCES_MAPPING = {
 export function sendHtmlEmail({ htmlBody, sourceKey, subject, toAddress }) {
   const ses = new AWS.SES({ region: 'us-east-1' });
   const { CcAddresses, ConfigurationSetName, Source } = SOURCES_MAPPING[sourceKey];
+  const htmlData = inlineCss(htmlBody, { removeHtmlSelectors: true, url: PUBLIC_PATH });
 
   const params = {
     ConfigurationSetName,
@@ -33,7 +38,7 @@ export function sendHtmlEmail({ htmlBody, sourceKey, subject, toAddress }) {
     },
     Message: {
       Body: {
-        Html: { Charset, Data: htmlBody },
+        Html: { Charset, Data: htmlData },
       },
       Subject: { Charset, Data: subject },
     },
