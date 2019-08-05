@@ -7,9 +7,9 @@ const RESPONSE_HEADERS = {
   'Content-Type': 'application/json',
 };
 
-export function buildResponseData({ code = 200, message, ...rest }) {
+export function buildResponseData(message, code, payload) {
   return {
-    body: JSON.stringify({ message, ...rest }, null, 2),
+    body: JSON.stringify({ message, payload }, null, 2),
     headers: RESPONSE_HEADERS,
     statusCode: code,
   };

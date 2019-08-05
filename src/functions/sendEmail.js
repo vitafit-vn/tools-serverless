@@ -5,15 +5,15 @@ export default async function sendEmail(event) {
   const { body, httpMethod = '' } = event || {};
 
   if (httpMethod.toUpperCase() !== 'POST') {
-    return buildResponseData({ code: 400, message: 'Invalid request method!' });
+    return buildResponseData('Invalid request method!', 400);
   }
 
   try {
     const params = JSON.parse(body);
     const data = await sendHtmlEmail(params);
 
-    return buildResponseData({ data, message: 'Success!' });
+    return buildResponseData('Success!', 200, data);
   } catch (error) {
-    return buildResponseData({ error, code: 400, message: 'Invalid request!' });
+    return buildResponseData('Invalid request!', 400, { ...error });
   }
 }
