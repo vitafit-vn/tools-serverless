@@ -9,8 +9,8 @@ export default async function sendEmail(event) {
   }
 
   try {
-    const { htmlBody, sourceKey, subject, toAddress } = JSON.parse(body);
-    const data = await sendHtmlEmail({ htmlBody, sourceKey, subject, toAddress });
+    const params = JSON.parse(body);
+    const data = await sendHtmlEmail(params);
 
     return buildResponseData({ data, message: 'Success!' });
   } catch (error) {

@@ -14,30 +14,41 @@ export const SOURCE_KEYS = {
 
 const SOURCES_MAPPING = {
   [SOURCE_KEYS.HLV_ONLINE]: {
-    // CcAddresses: ['reports.ops@vitafit.vn'],
     ConfigurationSetName: 'HlvOnlineEmails',
     Source: 'hlv-online@vitafit.vn',
   },
   [SOURCE_KEYS.SALES]: {
-    // CcAddresses: ['reports.sales@vitafit.vn'],
     ConfigurationSetName: 'SalesEmails',
     Source: 'sales@vitafit.vn',
   },
 };
 
-export async function sendHtmlEmail({ htmlBody, sourceKey, subject, toAddress }) {
+function validateEmailParams(params) {
+  const { htmlBody, sourceKey, subject, toAddresses } = params;
+  if (_.isEmpty(sourceKey) || !_.includes(_.values(SOURCE_KEYS), sourceKey)) throw new Error('Invalid sourceKey');
+  if (_.isEmpty(htmlBody)) throw new Error('Invalid htmlBody');
+  if (_.isEmpty(subject)) throw new Error('Invalid subject');
+  if (_.isEmpty(toAddresses)) throw new Error('Invalid toAddresses');
+}
+
+export async function sendHtmlEmail(params) {
+  validateEmailParams(params);
+
   const ses = new AWS.SES({ region: 'us-east-1' });
-  const { CcAddresses, ConfigurationSetName, Source } = SOURCES_MAPPING[sourceKey] || {};
+  const { bccAddresses, ccAddresses, htmlBody, sourceKey, subject, toAddresses } = params;
+
+  const { ConfigurationSetName, Source } = SOURCES_MAPPING[sourceKey] || {};
   if (_.isEmpty(Source)) throw new Error('Invalid sourceKey');
 
   const htmlData = await inlineCss(htmlBody, { removeHtmlSelectors: true, url: PUBLIC_PATH });
 
-  const params = {
+  const sendParams = {
     ConfigurationSetName,
     Source,
     Destination: {
-      CcAddresses,
-      ToAddresses: [toAddress],
+      BccAddresses: bccAddresses,
+      CcAddresses: ccAddresses,
+      ToAddresses: toAddresses,
     },
     Message: {
       Body: {
@@ -47,6 +58,6 @@ export async function sendHtmlEmail({ htmlBody, sourceKey, subject, toAddress })
     },
   };
 
-  const response = await ses.sendEmail(params).promise();
+  const response = await ses.sendEmail(sendParams).promise();
   return response;
 }
