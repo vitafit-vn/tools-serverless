@@ -14,6 +14,7 @@ export default async function sendEmail(event) {
 
     return buildResponseData('Success!', 200, data);
   } catch (error) {
-    return buildResponseData('Invalid request!', 400, { ...error });
+    const { message } = error;
+    return buildResponseData('Invalid request!', 400, { message });
   }
 }
