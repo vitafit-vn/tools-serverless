@@ -15,11 +15,11 @@ export const SOURCE_KEYS = {
 const SOURCES_MAPPING = {
   [SOURCE_KEYS.HLV_ONLINE]: {
     ConfigurationSetName: 'HlvOnlineEmails',
-    Source: 'hlv-online@vitafit.vn',
+    Source: '"HLV VitaFit" <hlv@vitafit.vn>',
   },
   [SOURCE_KEYS.SALES]: {
     ConfigurationSetName: 'SalesEmails',
-    Source: 'sales@vitafit.vn',
+    Source: '"Sales VitaFit" <sales@vitafit.vn>',
   },
 };
 
